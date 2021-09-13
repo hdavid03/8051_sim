@@ -1,0 +1,50 @@
+using 0
+mov 0x44 #123
+mov 0x56 #3
+cpl A
+mov 0x88 #234
+mov R1 #0x88
+add R2 @R1
+call Byte2BCD
+using 3
+cpl A
+setb 0xdd
+clr 0xdd
+cpl 0xdd
+mov R0 0x47
+mov R0 #3
+cpl C
+addc R0 A
+anl A R0
+rrc A
+rl A
+rlc A
+rr A
+orl R5 A
+xrl A R0
+orl A #0xab
+swap A
+mov R7 #5
+loop
+inc R6
+dec R5
+djnz R7 loop
+subb R0 0x44
+clr A
+clr C
+end
+Byte2BCD
+push 100
+mov A 0x44
+mov B #100
+div AB
+mov R0 A
+mov A B
+mov B #10
+div AB
+using 1
+mov R0 A
+using 2
+mov R0 B
+pop 100
+ret
